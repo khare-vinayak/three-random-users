@@ -1,62 +1,45 @@
-//let usersList=document.querySelector("ul");
-
 window.addEventListener('hashchange',(ev)=>{
-    console.log(window.location.hash);
     const id= window.location.hash.slice(1)
-    console.log(id);
-    console.log(document.querySelector("div"));
-    console.log(document.getElementById(`#${id}`));
-    document.getElementById(`#${id}`).style.display = "none";
-   //document.getElementById(`#${id}`).style.display="block";
+    const data= document.querySelectorAll(".hideMe,.userData");
+    if(id ==='title'){      //when click on 'Title'
+        data.forEach(item =>{
+            item.classList.toggle('hideMe',false);
+        });
+    }
+    else{                   // when click on the user number(1/2/3)
+         data.forEach(item =>{
+            let element=item.id.slice(1);
+            if (element !== id){
+                item.classList.toggle('hideMe',true);
+            }
+        });
+    }
+    
+ });
 
-})
+ // Display Users
 function renderUsers(user){
-    console.log('User1');
-    console.log(user);
-    user.forEach(u=>{
-       let num=1;
-        console.log((u.fullName));
-        console.log(u.email);
-        num++;
-    }); 
     let num=1;
-
     const html=user.map(ul=>{
         return `
-            <div id="nav">
-            <a href="#${ul.id}">${num++} </a>
-            </div>
-            <div id="#${ul.id}">
-            ${ul.fullName}
-             ${ul.email} 
-            <img src=${ul.avatar} ></img>
-           </div> 
+               <div class="container">
+                    <div class="navigation">
+                        <a href="#${ul.id}">${num++} </a>
+                    </div>   
+                    
+                    <div id="#${ul.id}" class="userData">
+                        <div>${ul.fullName}</div>
+                        <div>${ul.email} </div>
+                        <img src=${ul.avatar} />
+                    </div> 
+                </div>
            ` 
-         /* 
-         <tr>
-            <td><a href="#${ul.id}">${num++} </a></td>
-            <td> ${ul.fullName} </td>
-            <td> ${ul.email} </td>
-            <td><img src=${ul.avatar}></img></td>
-        </tr>
-         
-         <li><a href="#${ul.id}">${num++} </a> </li>
-            <li>${ul.fullName} </li>
-            <li> ${ul.email} <li>
-            <img src=${ul.avatar}></img>
-        */
     });
-    console.log(html);
-   // console.log(document.querySelector('#ul'));
-    //console.log(document.querySelector('#userList'));
     const usersList=document.querySelector('#main');
-    //console.log(usersList);
-    
-    //ul.innerHTML=html;
     usersList.innerHTML=html;
 }
 
-
+//Fetch Users data
 function getData(){
     const user1= fetch('https://acme-users-api-rev.herokuapp.com/api/users/random');
     const user2= fetch('https://acme-users-api-rev.herokuapp.com/api/users/random');
@@ -67,6 +50,5 @@ function getData(){
         .then (result=> renderUsers(result));
         
 }
-
 
 getData();
