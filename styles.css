@@ -11,7 +11,6 @@ body{
 }
 h1{
     text-align: center;
-   
 }
 a{
     color: rgb(0, 102, 102);
@@ -19,45 +18,46 @@ a{
 
 #main{
     display:flex;
-    flex-direction: column;
+    flex-direction: row;
+    
 }
 .container{
     display:flex; 
     flex-direction: column;
     flex-wrap:wrap;
-    justify-content: space-around;
     
 }
 .userData{
     display:flex;
-    flex-direction: column;
     background-color:rgb(0, 102, 102);
     color:white;
-    width:300px;
-    height: 400px;
-    align-items: center;
- }
+    align-items: center; 
+    flex-direction: column;
+    margin-top: 2rem;
+    padding: 2rem;
+}
+
 
 img {
     width: 100px;
     height: 100px;
     border-radius: 50%;
    }
+
 .hideMe{
     display:none;
-
 }
- .navigation{
+
+.navigation{
     display:flex;
     justify-content: center;
-    background-color: orange;
-    color:white;
     width:300px;
     height: 50px;
- }
-  
-  
- 
-  
-  
-  
+   }
+.select{
+    justify-content: center;
+    width:50px;
+    height: 50px; 
+    background-color:rgb(0, 102, 102);
+    
+}
